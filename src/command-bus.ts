@@ -39,7 +39,7 @@ export class CommandBus<CommandBase extends ICommand = ICommand>
 
   execute<
   T extends CommandBase,
-  K = T extends ReturningCommand<infer U> ? U : unknown
+  K = T extends ReturningCommand<infer U> ? U : never
 >(command: T): Promise<K> {
     const commandName = this.getCommandName(command as any);
     const handler = this.handlers.get(commandName);

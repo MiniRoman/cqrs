@@ -40,7 +40,7 @@ export class QueryBus<QueryBase extends IQuery = IQuery>
     this._publisher = _publisher;
   }
 
-  async execute<T extends QueryBase, K = T extends ReturningQuery<infer U> ? U : unknown>(
+  async execute<T extends QueryBase, K = T extends ReturningQuery<infer U> ? U : never>(
     query: T,
   ): Promise<K> {
     const queryName = this.getQueryName((query as any) as Function);
